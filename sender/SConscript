@@ -1,0 +1,12 @@
+Import('env')
+Import('non_warn_env')
+Import('third_include_path')
+Import('platform_libs')
+
+env = env.Clone()
+non_warn_env = non_warn_env.Clone()
+
+objs = []
+objs += env.Object(Glob('*.cc'))
+
+Return('objs')
