@@ -16,7 +16,10 @@ namespace cls {
 
 const uint32_t InitialAvailableBitrate{600000u};
 
-GCCServer::GCCServer() {
+GCCServer::GCCServer(const std::vector<std::string> &ips,
+                     std::vector<uint16_t> ports,
+                     uint64_t crude_timer_interval_ms) {
+  udp_server_ = std::make_shared<UDPServer>(ips, ports, this, crude_timer_interval_ms);
   // 初始化网络控制工程
   webrtc::GoogCcFactoryConfig config;
   config.feedback_only = true;
@@ -34,6 +37,7 @@ GCCServer::GCCServer() {
 GCCServer::~GCCServer() {
   controllerFactory_.reset();
   rtpTransportControllerSend_.reset();
+  udp_server_.reset();
 }
 
 // 接收到udp包的回调

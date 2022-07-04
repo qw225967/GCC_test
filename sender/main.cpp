@@ -2,12 +2,12 @@
 #include "rtc/pack.h"
 #include "rtc/udp_server.h"
 #include "rtc/udp_packet.hpp"
+#include "gcc_server.h"
 #include <pthread.h>
+#include <string>
+#include <vector>
 
-void test() {}
-
-
-int main() {
+void * test(void* args) {
   boost::asio::ip::address local_addr = boost::asio::ip::address::from_string("0.0.0.0");
   cls::UDPEndpoint local_endpoint(local_addr, 8001);
 
@@ -16,8 +16,8 @@ int main() {
   UDPSocket.open(local_endpoint.protocol());
 
 
-  boost::asio::ip::address send_addr = boost::asio::ip::address::from_string("192.168.25.123");
-  cls::UDPEndpoint send_endpoint(send_addr, 10014);
+  boost::asio::ip::address send_addr = boost::asio::ip::address::from_string("172.16.27.59");
+  cls::UDPEndpoint send_endpoint(send_addr, 8002);
   cls::UDPPacketPtr rtcp_packet;
   rtcp_packet = cls::Pack::packing_publish(11111, 11111);
   UDPSocket.send_to(boost::asio::buffer(rtcp_packet->const_buffer(), rtcp_packet->length()), send_endpoint);
@@ -48,6 +48,26 @@ int main() {
       }
     }
   }
+}
+
+
+int main() {
+  pthread_t tids;
+  int ret = pthread_create(&tids, NULL, test, NULL);
+  if (ret != 0) {
+    std::cout << "pthread error" << std::endl;
+  }
+
+  std::string ip("0.0.0.0");
+  std::vector<std::string> vec_ip;
+  vec_ip.push_back(ip);
+
+  std::vector<uint16_t> vec_port;
+  vec_port.push_back(8001);
+
+  cls::GCCServer gcc_server(vec_ip, vec_port, 100);
+  gcc_server.run();
+
   std::cout << "Hello, World!" << std::endl;
 
   return 0;

@@ -27,14 +27,23 @@ class GCCServer : public webrtc::PacketRouter,
                   public webrtc::TargetTransferRateObserver,
                   public UDPServerObserver {
 public:
-  GCCServer();
+  GCCServer(const std::vector<std::string> &ips,
+            std::vector<uint16_t> ports,
+            uint64_t crude_timer_interval_ms);
   virtual ~GCCServer();
+
+  void run() { udp_server_->run(); }
 
 public:
   // 接收到udp包的回调
-  virtual void recv_udp_cb(UDPPacketPtr udp_packet, int addr_index) = 0;
+  virtual void recv_udp_cb(UDPPacketPtr udp_packet, int addr_index);
   // 基础定时器回调
-  virtual void crude_timer_cb(uint64_t tick_ms) = 0;
+  virtual void crude_timer_cb(uint64_t tick_ms);
+  // webrtc 虚函数
+  void OnTargetTransferRate(webrtc::TargetTransferRate) {}
+  void SendPacket(RTC::RtpPacket* packet,
+                  const webrtc::PacedPacketInfo& cluster_info){}
+  RTC::RtpPacket* GeneratePadding(size_t target_size_bytes){return nullptr;}
 
 private:
   void rtcp_handler(UDPPacketPtr udp_packet);
@@ -43,6 +52,8 @@ private:
 private:
   NetworkControllerFactoryInterfacePtr controllerFactory_;
   RtpTransportControllerSendPtr rtpTransportControllerSend_;
+
+  UDPServerPtr udp_server_;
 };
 
 } // namespace cls
