@@ -528,6 +528,12 @@
 		<Unit filename="/Users/admin/go/src/github.com/GCC_test/sender/libwebrtc/libwebrtc/rtc_base/experiments/rate_control_settings.h">
 			<Option target="sender"/>
 		</Unit>
+		<Unit filename="/Users/admin/go/src/github.com/GCC_test/sender/libwebrtc/libwebrtc/rtc_base/network/sent_packet.cc">
+			<Option target="sender"/>
+		</Unit>
+		<Unit filename="/Users/admin/go/src/github.com/GCC_test/sender/libwebrtc/libwebrtc/rtc_base/network/sent_packet.h">
+			<Option target="sender"/>
+		</Unit>
 		<Unit filename="/Users/admin/go/src/github.com/GCC_test/sender/libwebrtc/libwebrtc/system_wrappers/source/field_trial.cc">
 			<Option target="sender"/>
 		</Unit>
@@ -547,6 +553,12 @@
 			<Option target="sender"/>
 		</Unit>
 		<Unit filename="/Users/admin/go/src/github.com/GCC_test/sender/rtc/rtcp_packet.h">
+			<Option target="sender"/>
+		</Unit>
+		<Unit filename="/Users/admin/go/src/github.com/GCC_test/sender/rtc/rtp_packet.cc">
+			<Option target="sender"/>
+		</Unit>
+		<Unit filename="/Users/admin/go/src/github.com/GCC_test/sender/rtc/rtp_packet.h">
 			<Option target="sender"/>
 		</Unit>
 		<Unit filename="/Users/admin/go/src/github.com/GCC_test/sender/rtc/udp_server.cc">

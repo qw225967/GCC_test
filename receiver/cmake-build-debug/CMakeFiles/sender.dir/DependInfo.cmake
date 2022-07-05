@@ -85,6 +85,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/admin/go/src/github.com/GCC_test/receiver/main.cpp" "/Users/admin/go/src/github.com/GCC_test/receiver/cmake-build-debug/CMakeFiles/sender.dir/main.cpp.o"
   "/Users/admin/go/src/github.com/GCC_test/receiver/rtc/pack.cc" "/Users/admin/go/src/github.com/GCC_test/receiver/cmake-build-debug/CMakeFiles/sender.dir/rtc/pack.cc.o"
   "/Users/admin/go/src/github.com/GCC_test/receiver/rtc/rtcp_packet.cc" "/Users/admin/go/src/github.com/GCC_test/receiver/cmake-build-debug/CMakeFiles/sender.dir/rtc/rtcp_packet.cc.o"
+  "/Users/admin/go/src/github.com/GCC_test/receiver/rtc/rtp_packet.cc" "/Users/admin/go/src/github.com/GCC_test/receiver/cmake-build-debug/CMakeFiles/sender.dir/rtc/rtp_packet.cc.o"
   "/Users/admin/go/src/github.com/GCC_test/receiver/rtc/udp_server.cc" "/Users/admin/go/src/github.com/GCC_test/receiver/cmake-build-debug/CMakeFiles/sender.dir/rtc/udp_server.cc.o"
   "/Users/admin/go/src/github.com/GCC_test/receiver/util/helper.cc" "/Users/admin/go/src/github.com/GCC_test/receiver/cmake-build-debug/CMakeFiles/sender.dir/util/helper.cc.o"
   )

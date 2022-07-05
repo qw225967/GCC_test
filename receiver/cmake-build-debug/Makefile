@@ -1977,6 +1977,30 @@ rtc/rtcp_packet.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender.dir/build.make CMakeFiles/sender.dir/rtc/rtcp_packet.cc.s
 .PHONY : rtc/rtcp_packet.cc.s
 
+rtc/rtp_packet.o: rtc/rtp_packet.cc.o
+.PHONY : rtc/rtp_packet.o
+
+# target to build an object file
+rtc/rtp_packet.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender.dir/build.make CMakeFiles/sender.dir/rtc/rtp_packet.cc.o
+.PHONY : rtc/rtp_packet.cc.o
+
+rtc/rtp_packet.i: rtc/rtp_packet.cc.i
+.PHONY : rtc/rtp_packet.i
+
+# target to preprocess a source file
+rtc/rtp_packet.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender.dir/build.make CMakeFiles/sender.dir/rtc/rtp_packet.cc.i
+.PHONY : rtc/rtp_packet.cc.i
+
+rtc/rtp_packet.s: rtc/rtp_packet.cc.s
+.PHONY : rtc/rtp_packet.s
+
+# target to generate assembly for a file
+rtc/rtp_packet.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender.dir/build.make CMakeFiles/sender.dir/rtc/rtp_packet.cc.s
+.PHONY : rtc/rtp_packet.cc.s
+
 rtc/udp_server.o: rtc/udp_server.cc.o
 .PHONY : rtc/udp_server.o
 
@@ -2265,6 +2289,9 @@ help:
 	@echo "... rtc/rtcp_packet.o"
 	@echo "... rtc/rtcp_packet.i"
 	@echo "... rtc/rtcp_packet.s"
+	@echo "... rtc/rtp_packet.o"
+	@echo "... rtc/rtp_packet.i"
+	@echo "... rtc/rtp_packet.s"
 	@echo "... rtc/udp_server.o"
 	@echo "... rtc/udp_server.i"
 	@echo "... rtc/udp_server.s"

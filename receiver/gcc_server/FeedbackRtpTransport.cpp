@@ -3,6 +3,9 @@
 
 #include "SeqManager.hpp"
 #include "Utils.hpp"
+#include "byte_io.h"
+#include "helper.h"
+#include <iostream>
 #include <limits> // std::numeric_limits()
 #include <sstream>
 
@@ -186,8 +189,7 @@ FeedbackRtpTransportPacket::~FeedbackRtpTransportPacket() {
   this->chunks.clear();
 }
 
-void FeedbackRtpTransportPacket::Dump() const {
-}
+void FeedbackRtpTransportPacket::Dump() const {}
 
 size_t FeedbackRtpTransportPacket::Serialize(uint8_t *buffer) {
 
@@ -241,11 +243,25 @@ size_t FeedbackRtpTransportPacket::Serialize(uint8_t *buffer) {
   return offset;
 }
 
+bool FeedbackRtpTransportPacket::BuildClsRTCPPacket(uint8_t *packet, size_t &len) {
+
+//  std::cout << cls::Helper::bytes_to_hex(GetData(), GetSize()) << std::endl;
+  this->Serialize(RTC::RTCP::Buffer);
+  if (GetData()) {
+    memcpy(packet, GetData(), GetSize());
+    len = GetSize();
+//    std::cout << cls::Helper::bytes_to_hex(packet, GetSize()) << std::endl;
+  } else {
+    return false;
+  }
+
+  return true;
+}
+
 FeedbackRtpTransportPacket::AddPacketResult
 FeedbackRtpTransportPacket::AddPacket(uint16_t sequenceNumber,
                                       uint64_t timestamp,
                                       size_t maxRtcpPacketLen) {
-
 
   // Let's see if we must set our base.
   if (this->latestTimestamp == 0u) {
@@ -287,7 +303,7 @@ FeedbackRtpTransportPacket::AddPacket(uint16_t sequenceNumber,
 			)
   // clang-format on
   {
-
+    std::cout << "delta:" << delta64 << std::endl;
     return AddPacketResult::FATAL;
   }
 
@@ -325,10 +341,7 @@ FeedbackRtpTransportPacket::AddPacket(uint16_t sequenceNumber,
   return AddPacketResult::SUCCESS;
 }
 
-void FeedbackRtpTransportPacket::Finish() {
-
-  AddPendingChunks();
-}
+void FeedbackRtpTransportPacket::Finish() { AddPendingChunks(); }
 
 std::vector<struct FeedbackRtpTransportPacket::PacketResult>
 FeedbackRtpTransportPacket::GetPacketResults() const {
@@ -615,9 +628,7 @@ bool FeedbackRtpTransportPacket::RunLengthChunk::AddDeltas(
   return true;
 }
 
-void FeedbackRtpTransportPacket::RunLengthChunk::Dump() const {
-
-}
+void FeedbackRtpTransportPacket::RunLengthChunk::Dump() const {}
 
 uint16_t
 FeedbackRtpTransportPacket::RunLengthChunk::GetReceivedStatusCount() const {
@@ -671,7 +682,6 @@ bool FeedbackRtpTransportPacket::OneBitVectorChunk::AddDeltas(
       continue;
     } else if (status == Status::SmallDelta) {
       if (len < 1u) {
-
 
         return false;
       }
@@ -814,8 +824,6 @@ void FeedbackRtpTransportPacket::TwoBitVectorChunk::Dump() const {
   }
 
   out << "|";
-
-
 }
 
 uint16_t

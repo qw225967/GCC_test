@@ -33,10 +33,12 @@ aux_source_directory(libwebrtc/libwebrtc/modules/congestion_controller/goog_cc/ 
 
 add_executable(sender
         main.cpp
+
         ${RTC_CC}
         ${UTIL_CC}
         ${GCC_SERVER_CC}
         ${LIB_GCC_CC}
+
         libwebrtc/deps/abseil-cpp/abseil-cpp/absl/hash/internal/hash.cc
         libwebrtc/deps/abseil-cpp/abseil-cpp/absl/hash/internal/city.cc
         libwebrtc/deps/abseil-cpp/abseil-cpp/absl/container/internal/hashtablez_sampler.cc

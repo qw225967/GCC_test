@@ -1881,6 +1881,30 @@ libwebrtc/libwebrtc/rtc_base/experiments/rate_control_settings.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender.dir/build.make CMakeFiles/sender.dir/libwebrtc/libwebrtc/rtc_base/experiments/rate_control_settings.cc.s
 .PHONY : libwebrtc/libwebrtc/rtc_base/experiments/rate_control_settings.cc.s
 
+libwebrtc/libwebrtc/rtc_base/network/sent_packet.o: libwebrtc/libwebrtc/rtc_base/network/sent_packet.cc.o
+.PHONY : libwebrtc/libwebrtc/rtc_base/network/sent_packet.o
+
+# target to build an object file
+libwebrtc/libwebrtc/rtc_base/network/sent_packet.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender.dir/build.make CMakeFiles/sender.dir/libwebrtc/libwebrtc/rtc_base/network/sent_packet.cc.o
+.PHONY : libwebrtc/libwebrtc/rtc_base/network/sent_packet.cc.o
+
+libwebrtc/libwebrtc/rtc_base/network/sent_packet.i: libwebrtc/libwebrtc/rtc_base/network/sent_packet.cc.i
+.PHONY : libwebrtc/libwebrtc/rtc_base/network/sent_packet.i
+
+# target to preprocess a source file
+libwebrtc/libwebrtc/rtc_base/network/sent_packet.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender.dir/build.make CMakeFiles/sender.dir/libwebrtc/libwebrtc/rtc_base/network/sent_packet.cc.i
+.PHONY : libwebrtc/libwebrtc/rtc_base/network/sent_packet.cc.i
+
+libwebrtc/libwebrtc/rtc_base/network/sent_packet.s: libwebrtc/libwebrtc/rtc_base/network/sent_packet.cc.s
+.PHONY : libwebrtc/libwebrtc/rtc_base/network/sent_packet.s
+
+# target to generate assembly for a file
+libwebrtc/libwebrtc/rtc_base/network/sent_packet.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender.dir/build.make CMakeFiles/sender.dir/libwebrtc/libwebrtc/rtc_base/network/sent_packet.cc.s
+.PHONY : libwebrtc/libwebrtc/rtc_base/network/sent_packet.cc.s
+
 libwebrtc/libwebrtc/system_wrappers/source/field_trial.o: libwebrtc/libwebrtc/system_wrappers/source/field_trial.cc.o
 .PHONY : libwebrtc/libwebrtc/system_wrappers/source/field_trial.o
 
@@ -1976,6 +2000,30 @@ rtc/rtcp_packet.s: rtc/rtcp_packet.cc.s
 rtc/rtcp_packet.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender.dir/build.make CMakeFiles/sender.dir/rtc/rtcp_packet.cc.s
 .PHONY : rtc/rtcp_packet.cc.s
+
+rtc/rtp_packet.o: rtc/rtp_packet.cc.o
+.PHONY : rtc/rtp_packet.o
+
+# target to build an object file
+rtc/rtp_packet.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender.dir/build.make CMakeFiles/sender.dir/rtc/rtp_packet.cc.o
+.PHONY : rtc/rtp_packet.cc.o
+
+rtc/rtp_packet.i: rtc/rtp_packet.cc.i
+.PHONY : rtc/rtp_packet.i
+
+# target to preprocess a source file
+rtc/rtp_packet.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender.dir/build.make CMakeFiles/sender.dir/rtc/rtp_packet.cc.i
+.PHONY : rtc/rtp_packet.cc.i
+
+rtc/rtp_packet.s: rtc/rtp_packet.cc.s
+.PHONY : rtc/rtp_packet.s
+
+# target to generate assembly for a file
+rtc/rtp_packet.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender.dir/build.make CMakeFiles/sender.dir/rtc/rtp_packet.cc.s
+.PHONY : rtc/rtp_packet.cc.s
 
 rtc/udp_server.o: rtc/udp_server.cc.o
 .PHONY : rtc/udp_server.o
@@ -2253,6 +2301,9 @@ help:
 	@echo "... libwebrtc/libwebrtc/rtc_base/experiments/rate_control_settings.o"
 	@echo "... libwebrtc/libwebrtc/rtc_base/experiments/rate_control_settings.i"
 	@echo "... libwebrtc/libwebrtc/rtc_base/experiments/rate_control_settings.s"
+	@echo "... libwebrtc/libwebrtc/rtc_base/network/sent_packet.o"
+	@echo "... libwebrtc/libwebrtc/rtc_base/network/sent_packet.i"
+	@echo "... libwebrtc/libwebrtc/rtc_base/network/sent_packet.s"
 	@echo "... libwebrtc/libwebrtc/system_wrappers/source/field_trial.o"
 	@echo "... libwebrtc/libwebrtc/system_wrappers/source/field_trial.i"
 	@echo "... libwebrtc/libwebrtc/system_wrappers/source/field_trial.s"
@@ -2265,6 +2316,9 @@ help:
 	@echo "... rtc/rtcp_packet.o"
 	@echo "... rtc/rtcp_packet.i"
 	@echo "... rtc/rtcp_packet.s"
+	@echo "... rtc/rtp_packet.o"
+	@echo "... rtc/rtp_packet.i"
+	@echo "... rtc/rtp_packet.s"
 	@echo "... rtc/udp_server.o"
 	@echo "... rtc/udp_server.i"
 	@echo "... rtc/udp_server.s"

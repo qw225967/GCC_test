@@ -96,6 +96,7 @@ add_executable(sender
         libwebrtc/libwebrtc/rtc_base/experiments/alr_experiment.cc
         libwebrtc/libwebrtc/modules/remote_bitrate_estimator/overuse_detector.cc
         libwebrtc/libwebrtc/api/transport/field_trial_based_config.cc
+        libwebrtc/libwebrtc/rtc_base/network/sent_packet.cc
         )
 
 ADD_DEFINITIONS(-DBOOST_LOG_DYN_LINK)

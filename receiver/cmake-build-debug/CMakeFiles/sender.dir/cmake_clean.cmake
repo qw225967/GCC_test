@@ -76,6 +76,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/sender.dir/main.cpp.o"
   "CMakeFiles/sender.dir/rtc/pack.cc.o"
   "CMakeFiles/sender.dir/rtc/rtcp_packet.cc.o"
+  "CMakeFiles/sender.dir/rtc/rtp_packet.cc.o"
   "CMakeFiles/sender.dir/rtc/udp_server.cc.o"
   "CMakeFiles/sender.dir/util/helper.cc.o"
   "sender"

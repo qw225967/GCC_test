@@ -89,11 +89,11 @@ void UDPServer::handle_receive_from(int index, UDPPacketPtr pkt, const ErrorCode
   do_receive_from(index);
 
   //================= test ================
-  printf("recv:%d\n",pkt->mutable_buffer()[1]);
+//  printf("recv:%d\n",pkt->mutable_buffer()[1]);
   RTCPPacket rtcp_packet;
   rtcp_packet.parse(pkt->mutable_buffer(), pkt->length());
   uint8_t subtype = rtcp_packet.header()->count_or_format;
-  printf("subtype:%s, %d\n",showmap[subtype].c_str(),subtype);
+//  printf("subtype:%s, %d\n",showmap[subtype].c_str(),subtype);
 
 
 }

@@ -11,6 +11,8 @@
 #include "FeedbackRtpTransport.hpp"
 #include "rtc_common.hpp"
 #include "udp_packet.hpp"
+#include "helper.h"
+#include <iostream>
 
 namespace cls {
 
@@ -19,7 +21,8 @@ const uint32_t InitialAvailableBitrate{600000u};
 GCCServer::GCCServer(const std::vector<std::string> &ips,
                      std::vector<uint16_t> ports,
                      uint64_t crude_timer_interval_ms) {
-  udp_server_ = std::make_shared<UDPServer>(ips, ports, this, crude_timer_interval_ms);
+  udp_server_ =
+      std::make_shared<UDPServer>(ips, ports, this, crude_timer_interval_ms);
   // 初始化网络控制工程
   webrtc::GoogCcFactoryConfig config;
   config.feedback_only = true;
@@ -32,6 +35,8 @@ GCCServer::GCCServer(const std::vector<std::string> &ips,
   rtpTransportControllerSend_ =
       std::make_shared<webrtc::RtpTransportControllerSend>(
           this, nullptr, controllerFactory_.get(), bitrateConfig);
+
+  rtpTransportControllerSend_->RegisterTargetTransferRateObserver(this);
 }
 
 GCCServer::~GCCServer() {
@@ -66,23 +71,26 @@ void GCCServer::rtcp_handler(UDPPacketPtr udp_packet) {
     return;
   }
 
-  RTCPPacketPtr rtcp_packet = std::make_shared<RTCPPacket>();
-  if (!rtcp_packet->parse(udp_packet->mutable_buffer(), udp_packet->length())) {
+//  std::cout << Helper::bytes_to_hex(udp_packet->mutable_buffer(), udp_packet->length()) << std::endl;
+
+  RTC::RTCP::FeedbackRtpTransportPacket feedback(0u, 123123);
+  auto feedback2 = feedback.Parse(udp_packet->mutable_buffer(), udp_packet->length());
+  if (!feedback2) {
     return;
   }
-  auto pt = rtcp_packet->header()->packet_type;
-  switch (pt) {
-  case PT_GCCFB: {
-    RTC::RTCP::FeedbackRtpTransportPacket  feedback(123123, 123123);
-    if (!feedback.Parse(udp_packet->mutable_buffer(), udp_packet->length())) {
-      return;
-    }
-    rtpTransportControllerSend_->OnTransportFeedback(feedback);
-    break;
-  }
-  default:
-    break;
-  }
+  rtpTransportControllerSend_->OnTransportFeedback(*feedback2);
+
+  std::cout << "availableBitrate:" << bitrates_.availableBitrate << std::endl;
+}
+
+void GCCServer::OnPacketSend(webrtc::RtpPacketSendInfo packetInfo, uint64_t nowMs){
+  rtpTransportControllerSend_->packet_sender()->InsertPacket(packetInfo.length);
+
+  rtpTransportControllerSend_->OnAddPacket(packetInfo);
+
+  rtc::SentPacket sentPacket(packetInfo.transport_sequence_number, nowMs);
+  rtpTransportControllerSend_->OnSentPacket(sentPacket, packetInfo.length);
+
 }
 
 } // namespace cls

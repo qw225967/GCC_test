@@ -37,6 +37,11 @@
 
 namespace RTC {
 namespace RTCP {
+static constexpr size_t kHeaderLength = 4;
+static constexpr uint8_t kPacketType = 207;
+static constexpr size_t kCommonFeedbackLength = 8;
+static constexpr uint8_t kFeedbackMessageType = 15;
+
 class FeedbackRtpTransportPacket : public FeedbackRtpPacket {
 public:
   struct PacketResult {
@@ -166,6 +171,7 @@ private:
   static absl::flat_hash_map<Status, std::string> status2String;
 
 public:
+
   FeedbackRtpTransportPacket(uint32_t senderSsrc, uint32_t mediaSsrc)
       : FeedbackRtpPacket(RTC::RTCP::FeedbackRtp::MessageType::TCC, senderSsrc,
                           mediaSsrc) {}
@@ -173,6 +179,8 @@ public:
   ~FeedbackRtpTransportPacket();
 
 public:
+  bool BuildClsRTCPPacket(uint8_t *packet, size_t &len);
+
   AddPacketResult AddPacket(uint16_t sequenceNumber, uint64_t timestamp,
                             size_t maxRtcpPacketLen);
   void Finish(); // Just for locally generated packets.

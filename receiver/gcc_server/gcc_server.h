@@ -10,18 +10,19 @@
 #ifndef RTCP_TEST_SEND_SINGLE_N_GCC_SERVER_H
 #define RTCP_TEST_SEND_SINGLE_N_GCC_SERVER_H
 
-#include "api/transport/goog_cc_factory.h"
+
 #include "api/transport/network_types.h"
 #include "call/rtp_transport_controller_send.h"
 #include "modules/pacing/packet_router.h"
-#include "rtcp_packet.h"
 
 #include "udp_server.h"
 
 namespace cls {
+class RTPPacket;
+typedef std::shared_ptr<RTPPacket> RTPPacketPtr;
+class RTCPPacket;
 typedef std::shared_ptr<RTCPPacket> RTCPPacketPtr;
-typedef std::shared_ptr<webrtc::NetworkControllerFactoryInterface> NetworkControllerFactoryInterfacePtr;
-typedef std::shared_ptr<webrtc::RtpTransportControllerSend> RtpTransportControllerSendPtr;
+typedef std::shared_ptr<RTC::RTCP::FeedbackRtpTransportPacket> FeedbackRtpTransportPacketPtr;
 
 class GCCServer : public webrtc::PacketRouter,
                   public webrtc::TargetTransferRateObserver,
@@ -47,11 +48,17 @@ public:
 
 private:
   void rtcp_handler(UDPPacketPtr udp_packet);
-  void rtp_handler(UDPPacketPtr udp_packet){}
+  void rtp_handler(UDPPacketPtr udp_packet);
+  void SendTransportCcFeedback(UDPEndpoint &ep);
 
 private:
-  NetworkControllerFactoryInterfacePtr controllerFactory_;
-  RtpTransportControllerSendPtr rtpTransportControllerSend_;
+  FeedbackRtpTransportPacketPtr transportCcFeedbackPacket_;
+  uint8_t transportCcFeedbackPacketCount_{ 0u };
+  uint32_t transportCcFeedbackSenderSsrc_{ 0u };
+  uint32_t transportCcFeedbackMediaSsrc_{ 0u };
+  uint32_t maxIncomingBitrate_{ 0u };
+  uint64_t limitationRembSentAtMs_{ 0u };
+  uint8_t unlimitedRembCounter_{ 0u };
 
   UDPServerPtr udp_server_;
 };

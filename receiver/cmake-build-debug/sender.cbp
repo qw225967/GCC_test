@@ -549,6 +549,12 @@
 		<Unit filename="/Users/admin/go/src/github.com/GCC_test/receiver/rtc/rtcp_packet.h">
 			<Option target="sender"/>
 		</Unit>
+		<Unit filename="/Users/admin/go/src/github.com/GCC_test/receiver/rtc/rtp_packet.cc">
+			<Option target="sender"/>
+		</Unit>
+		<Unit filename="/Users/admin/go/src/github.com/GCC_test/receiver/rtc/rtp_packet.h">
+			<Option target="sender"/>
+		</Unit>
 		<Unit filename="/Users/admin/go/src/github.com/GCC_test/receiver/rtc/udp_server.cc">
 			<Option target="sender"/>
 		</Unit>

@@ -39,9 +39,9 @@ static constexpr uint8_t PT_RR    = 201;
 static constexpr uint8_t PT_SDES  = 202;
 static constexpr uint8_t PT_BYE   = 203;
 static constexpr uint8_t PT_APP   = 204;
-static constexpr uint8_t PT_NACK  = 205;
+static constexpr uint8_t PT_NACK  = 207; // gcc调试占用 换为207
 static constexpr uint8_t PT_REMB  = 206;
-static constexpr uint8_t PT_GCCFB = 207;
+static constexpr uint8_t PT_GCCFB = 205;
 
 static constexpr uint8_t PT_H264        = 107;
 static constexpr uint8_t PT_H265        = 108;
