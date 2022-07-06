@@ -12,7 +12,6 @@
 #include "rtc_common.hpp"
 #include "udp_packet.hpp"
 #include "helper.h"
-#include <iostream>
 
 namespace cls {
 
@@ -80,7 +79,6 @@ void GCCServer::rtcp_handler(UDPPacketPtr udp_packet) {
   }
   rtpTransportControllerSend_->OnTransportFeedback(*feedback2);
 
-  std::cout << "availableBitrate:" << bitrates_.availableBitrate << std::endl;
 }
 
 void GCCServer::OnPacketSend(webrtc::RtpPacketSendInfo packetInfo, uint64_t nowMs){

@@ -17,7 +17,7 @@
 #include "rtcp_packet.h"
 
 #include "udp_server.h"
-
+#include <iostream>
 namespace cls {
 typedef std::shared_ptr<RTCPPacket> RTCPPacketPtr;
 typedef std::shared_ptr<webrtc::NetworkControllerFactoryInterface>
@@ -56,12 +56,17 @@ public:
       bitrates_.availableBitrate = std::numeric_limits<uint32_t>::max();
     else
       bitrates_.availableBitrate = static_cast<uint32_t>(targetTransferRate.target_rate.bps());
+
+
+    std::cout << "availableBitrate:" << bitrates_.availableBitrate << std::endl;
   }
   void SendPacket(RTC::RtpPacket *packet,
                   const webrtc::PacedPacketInfo &cluster_info) {}
   RTC::RtpPacket *GeneratePadding(size_t target_size_bytes) { return nullptr; }
   void OnPacketSend(webrtc::RtpPacketSendInfo packetInfo, uint64_t nowMs);
-
+  uint32_t GetavailableBitrate() {
+    return bitrates_.availableBitrate == 0 ? 6000000 : bitrates_.availableBitrate;
+  }
 
 private:
   void rtcp_handler(UDPPacketPtr udp_packet);
